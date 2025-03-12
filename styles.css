@@ -1,3 +1,5 @@
+
+
 /* Reset y configuración general */
 * {
     margin: 0;
@@ -6,18 +8,32 @@
 }
 
 /* NAVBAR: Barra de navegación con logo y enlaces */
+/* Ajustes para centrar mejor el logo y la marca */
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     background: #b1ebd0;
     padding: 15px 30px;
-    color: white;
 }
 
 .logo {
-    font-size: 24px;
+    height: 60px; /* Ajusta el tamaño del logo */
+    width: auto; /* Mantiene la proporción */
+    transition: transform 0.3s ease-in-out; /* Efecto al pasar el cursor */
+}
+
+.logo:hover {
+    transform: scale(1.1); /* Hace que el logo crezca ligeramente al pasar el mouse */
+}
+
+
+
+.Marca {
+    font-size: 28px;
     font-weight: bold;
+    color: #333;
+    margin-left: 10px;
 }
 
 .nav-links {
