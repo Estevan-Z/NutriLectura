@@ -8,63 +8,81 @@
 }
 
 /* NAVBAR: Barra de navegación con logo y enlaces */
-/* Ajustes para centrar mejor el logo y la marca */
 .navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background: #b1ebd0;
+    align-items: center;
     padding: 15px 30px;
+    background: #f5f7e6; /* Fondo beige claro */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección izquierda con logo y nombre */
+.nav-left {
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-    height: 60px; /* Ajusta el tamaño del logo */
-    width: auto; /* Mantiene la proporción */
-    transition: transform 0.3s ease-in-out; /* Efecto al pasar el cursor */
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
 }
-
-.logo:hover {
-    transform: scale(1.1); /* Hace que el logo crezca ligeramente al pasar el mouse */
-}
-
-
 
 .Marca {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
-    color: #333;
-    margin-left: 10px;
+    color: #6b8e23; /* Verde oliva */
 }
 
+/* Estilos de los enlaces */
 .nav-links {
-    list-style: none;
     display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #d4a017; /* Amarillo mostaza */
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #6b8e23; /* Verde oliva */
+}
+
+/* Sección derecha con íconos y login */
+.nav-right {
+    display: flex;
+    align-items: center;
     gap: 15px;
 }
 
-.nav-links li {
-    display: inline;
-}
-
-.nav-links a {
+.nav-right a {
     text-decoration: none;
-    color: white;
+    color: #6b8e23; /* Verde oliva */
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-right a:hover {
+    color: #d4a017; /* Amarillo mostaza */
+}
+
+.nav-right img {
+    width: 20px;
+    height: 20px;
+}
+
+.login {
     font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background 0.3s;
 }
-
-.nav-links a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.nav-links input {
-    padding: 7px;
-    border-radius: 5px;
-    border: none;
-}
-
 /* BANNER: Imagen de cabecera */
 .banner img {
     width: 100%;

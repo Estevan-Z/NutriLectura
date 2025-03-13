@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <img class="logo" src="img/Logo.png" alt="Logo">
+            <div class="Marca">NutriLectura</div>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="acerca_de_nostros.html">Acerca de Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    
+        <div class="nav-right">
+            <a href="#" class="login"><img src="img/perfil.png" alt="Iniciar sesión"> Iniciar sesión</a>
+            <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
+            <a href="#"><img src="img/X.png" alt="X-twitter"></a>
+            <a href="#"><img src="img/LinkedIn.png" alt="LinkedIn"></a>
+            <a href="#"><img src="img/git.png" alt="GitHub"></a>
+      
+        </div>
+    </nav>
+
+    <section class="contacto">
+        <h2>Contáctanos</h2>
+        <p>Si tienes preguntas o sugerencias, completa el formulario y te responderemos pronto.</p>
+
+        <form id="formulario-contacto">
+            <div class="input-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+        
+            <div class="input-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="tuemail@example.com">
+            </div>
+        
+            <div class="input-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>
+        
+            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+        </form>
+        
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-item">
+                    <img src="img/ubicacion.png" alt="Ubicación">
+                    <p><strong>Carra 00 N° 00-00 </strong><br>Ibagué Tolima </p>
+                </div>
+                <div class="footer-item">
+                    <img src="img/Telefono.png" alt="Teléfono">
+                    <p><strong>+57 300 000 0000</strong></p>
+                </div>
+                <div class="footer-item">
+                    <img src="img/Gmail.png" alt="Email">
+                    <p><a href="mailto:support@company.com">NutriLecturat@gmail.com</a></p>
+                </div>
+            </div>
+    
+            <div class="footer-about">
+                <h3>Acerca de la empresa</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos, ut harum. Dolore voluptate, voluptas assumenda ipsum est explicabo mollitia ipsa fugiat possimus ut suscipit nulla quidem dolorum veritatis saepe at.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="img/X.png" alt="X-twitter"></a>
+                    <a href="#"><img src="img/LinkedIn.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="img/git.png" alt="GitHub"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("formulario-contacto").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita el envío tradicional del formulario
+            
+            // Muestra la alerta con SweetAlert
+            Swal.fire({
+                title: "¡Mensaje enviado!",
+                text: "Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo pronto.",
+                icon: "success",
+                confirmButtonColor: "#6b8e23", // Verde oliva
+                confirmButtonText: "OK"
+            });
+    
+            // Opcional: Limpiar el formulario después de enviar
+            this.reset();
+        });
+    </script>
+    
+    <style>
+            /* Estilos de la sección Contacto */
+            .contacto {
+                background-color: #f5f7e6; /* Fondo en tono beige */
+                padding: 50px 20px;
+                text-align: center;
+            }
+
+            .contacto h2 {
+                font-size: 28px;
+                color: #6b8e23; /* Verde oliva */
+                margin-bottom: 10px;
+            }
+
+            .contacto p {
+                font-size: 16px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            /* Estilos del formulario */
+            form {
+                max-width: 500px;
+                margin: 0 auto;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Estilos para cada grupo de entrada */
+            .input-group {
+                margin-bottom: 15px;
+                text-align: left;
+            }
+
+            .input-group label {
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                color: #6b8e23;
+                margin-bottom: 5px;
+            }
+
+            .input-group input,
+            .input-group textarea {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid #d4a017; /* Amarillo mostaza */
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            .input-group textarea {
+                height: 100px;
+                resize: none;
+            }
+
+            /* Botón de envío */
+            .btn-enviar {
+                display: inline-block;
+                background-color: #d4a017; /* Amarillo mostaza */
+                color: white;
+                padding: 10px 15px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .btn-enviar:hover {
+                background-color: #6b8e23; /* Verde oliva */
+            }
+
+    </style>
+</body>
+</html>
