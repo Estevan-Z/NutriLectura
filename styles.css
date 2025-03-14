@@ -2,9 +2,16 @@
 
 /* Reset y configuración general */
 * {
+   
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background: #ededed; /* Fondo gris claro */
+    color: #333;
 }
 
 /* NAVBAR: Barra de navegación con logo y enlaces */

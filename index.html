@@ -24,9 +24,18 @@
         <div class="nav-right">
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
-            <a href="#"><img src="img/LinkedIn.png" alt="LinkedIn"></a>
-            <a href="#"><img src="img/git.png" alt="GitHub"></a>
-      
+            <a href="#"><img src="img/instagram.png" alt="instagram"></a>
+            <div class="nav-cart">
+                <img src="img/Carro.png" alt="Carrito" id="icono-carrito">
+                <span id="contador-carrito">0</span>
+                
+                <!-- Menú desplegable del carrito -->
+                <div class="carrito-dropdown" id="carrito-dropdown">
+                    <h4>Carrito de Compras</h4>
+                    <ul id="lista-carrito"></ul>
+                    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+                </div>
+            </div>
         </div>
     </nav>
 <br>
@@ -137,5 +146,126 @@
             </div>
         </div>
     </footer>
+    <style>
+        /* Icono del carrito */
+        .nav-cart {
+            position: relative;
+            cursor: pointer;
+        }
+                
+        .nav-cart img {
+            width: 40px;
+            height: 40px;
+        }
+        #contador-carrito {
+            background-color: red;
+            color: white;
+            font-size: 14px;
+            border-radius: 50%;
+            padding: 4px 8px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+        }
+                
+        /* Estilos del menú del carrito */
+        .carrito-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+                
+        .carrito-dropdown h4 {
+            margin: 0;
+            text-align: center;
+        }
+                
+        .carrito-dropdown ul {
+            list-style: none;
+            padding: 0;
+        }
+                
+        .carrito-dropdown li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+    </style>
+
+<script>
+    let carrito = [];
+
+        // Cargar carrito desde localStorage al iniciar
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarCarritoDesdeLocalStorage();
+
+            document.querySelectorAll(".btn-agregar").forEach((boton, index) => {
+                boton.addEventListener("click", () => agregarAlCarrito(index));
+            });
+
+            document.getElementById("icono-carrito").addEventListener("click", toggleCarrito);
+        });
+
+        // Agregar producto al carrito
+        function agregarAlCarrito(index) {
+            const producto = productos[index];
+            carrito.push(producto);
+            actualizarCarrito();
+            guardarCarritoEnLocalStorage();
+        }
+
+        // Actualizar visualmente el carrito
+        function actualizarCarrito() {
+            document.getElementById("contador-carrito").innerText = carrito.length;
+            const listaCarrito = document.getElementById("lista-carrito");
+            listaCarrito.innerHTML = "";
+
+            carrito.forEach((producto, index) => {
+                listaCarrito.innerHTML += `<li>${producto.nombre} - $${producto.precio.toLocaleString()} 
+                    <button onclick="eliminarDelCarrito(${index})">❌</button></li>`;
+            });
+        }
+
+        // Eliminar un producto del carrito
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+            guardarCarritoEnLocalStorage();
+        }
+
+        // Vaciar el carrito
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+            guardarCarritoEnLocalStorage();
+        }
+
+        // Guardar carrito en localStorage
+        function guardarCarritoEnLocalStorage() {
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        }
+
+        // Cargar carrito desde localStorage
+        function cargarCarritoDesdeLocalStorage() {
+            const carritoGuardado = localStorage.getItem("carrito");
+            if (carritoGuardado) {
+                carrito = JSON.parse(carritoGuardado);
+                actualizarCarrito();
+            }
+        }
+
+        // Mostrar/Ocultar carrito
+        function toggleCarrito() {
+            const carritoDropdown = document.getElementById("carrito-dropdown");
+            carritoDropdown.style.display = carritoDropdown.style.display === "block" ? "none" : "block";
+        }
+
+
+</script>
 </body>
 </html>
