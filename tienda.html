@@ -10,6 +10,9 @@
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="js/Perfil/script.js"></script>
+    <script src="js/principal/Tienda.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -42,7 +45,7 @@
             <!-- Botón de Cerrar sesión (oculto inicialmente) -->
             <button id="btn-cerrar-sesion" style="display: none;" onclick="cerrarSesion()">Cerrar sesión</button>
             
-            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Suscribirse</a>
+            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Registrarse</a>
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
             <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
@@ -55,7 +58,12 @@
                 <div class="carrito-dropdown" id="carrito-dropdown">
                     <h4>Carrito de Compras</h4>
                     <ul id="lista-carrito"></ul>
-                    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="total-carrito">$0 COP</span>
+                    </div>
+                    <button class="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+                    <button class="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
                 </div>
             </div>
         </div>
@@ -177,31 +185,5 @@
         </div>
     </footer>
 
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        // Verificar si el usuario está registrado al cargar la página
-        document.addEventListener("DOMContentLoaded", function() {
-            let nombreUsuario = localStorage.getItem("nombreUsuario");
-
-            if (!nombreUsuario) {
-                // Si el usuario no está registrado, mostrar una alerta con SweetAlert2
-                Swal.fire({
-                    title: "Acceso restringido",
-                    text: "Por favor, regístrate o inicia sesión para realizar tus compras.",
-                    icon: "warning",
-                    confirmButtonText: "Registrarse",
-                    showCancelButton: true,
-                    cancelButtonText: "Iniciar sesión"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "registro.html"; // Redirigir a registro
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        window.location.href = "login.html"; // Redirigir a inicio de sesión
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>

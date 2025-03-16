@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="css/Carrito/styles.css">
     <script src="js/Perfil/script.js"></script>
+    <script src="js/principal/Tienda.js"></script>
     <style>
         
         .container {
@@ -85,7 +86,7 @@
             <!-- Botón de Cerrar sesión (oculto inicialmente) -->
             <button id="btn-cerrar-sesion" style="display: none;" onclick="cerrarSesion()">Cerrar sesión</button>
             
-            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Suscribirse</a>
+            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Registrarse</a>
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
             <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
@@ -98,7 +99,12 @@
                 <div class="carrito-dropdown" id="carrito-dropdown">
                     <h4>Carrito de Compras</h4>
                     <ul id="lista-carrito"></ul>
-                    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="total-carrito">$0 COP</span>
+                    </div>
+                    <button class="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+                    <button class="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
                 </div>
             </div>
         </div>
@@ -173,79 +179,5 @@
     </div>
 </footer>
 
-<style>
-    
-</style>
-
-<script>
-let carrito = [];
-
-    // Cargar carrito desde localStorage al iniciar
-    document.addEventListener("DOMContentLoaded", () => {
-        cargarCarritoDesdeLocalStorage();
-
-        document.querySelectorAll(".btn-agregar").forEach((boton, index) => {
-            boton.addEventListener("click", () => agregarAlCarrito(index));
-        });
-
-        document.getElementById("icono-carrito").addEventListener("click", toggleCarrito);
-    });
-
-    // Agregar producto al carrito
-    function agregarAlCarrito(index) {
-        const producto = productos[index];
-        carrito.push(producto);
-        actualizarCarrito();
-        guardarCarritoEnLocalStorage();
-    }
-
-    // Actualizar visualmente el carrito
-    function actualizarCarrito() {
-        document.getElementById("contador-carrito").innerText = carrito.length;
-        const listaCarrito = document.getElementById("lista-carrito");
-        listaCarrito.innerHTML = "";
-
-        carrito.forEach((producto, index) => {
-            listaCarrito.innerHTML += `<li>${producto.nombre} - $${producto.precio.toLocaleString()} 
-                <button onclick="eliminarDelCarrito(${index})">❌</button></li>`;
-        });
-    }
-
-    // Eliminar un producto del carrito
-    function eliminarDelCarrito(index) {
-        carrito.splice(index, 1);
-        actualizarCarrito();
-        guardarCarritoEnLocalStorage();
-    }
-
-    // Vaciar el carrito
-    function vaciarCarrito() {
-        carrito = [];
-        actualizarCarrito();
-        guardarCarritoEnLocalStorage();
-    }
-
-    // Guardar carrito en localStorage
-    function guardarCarritoEnLocalStorage() {
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-    }
-
-    // Cargar carrito desde localStorage
-    function cargarCarritoDesdeLocalStorage() {
-        const carritoGuardado = localStorage.getItem("carrito");
-        if (carritoGuardado) {
-            carrito = JSON.parse(carritoGuardado);
-            actualizarCarrito();
-        }
-    }
-
-    // Mostrar/Ocultar carrito
-    function toggleCarrito() {
-        const carritoDropdown = document.getElementById("carrito-dropdown");
-        carritoDropdown.style.display = carritoDropdown.style.display === "block" ? "none" : "block";
-    }
-
-
-</script>
 </body>
 </html>

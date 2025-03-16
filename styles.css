@@ -1,4 +1,6 @@
 /* Estilos para el menú de usuario */
+
+
 .usuario-menu {
     position: relative;
     display: flex;
@@ -41,9 +43,6 @@
     cursor: pointer;
 }
 
-.dropdown-usuario button:hover {
-    background-color: #d32f2f;
-}
 
 /* Reset y configuración general */
 * {

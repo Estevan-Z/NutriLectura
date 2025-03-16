@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/Carrito/styles.css">
     <link rel="stylesheet" href="styles.css">
     <script src="js/Perfil/script.js"></script>
+    <script src="js/principal/Tienda.js"></script> 
 </head>
 <body>
     <!-- Barra de navegación con enlaces principales -->
@@ -32,7 +33,7 @@
                 </div>
             </div>
             
-            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Registrate</a>
+            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Registrarse</a>
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
             <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
@@ -45,7 +46,12 @@
                 <div class="carrito-dropdown" id="carrito-dropdown">
                     <h4>Carrito de Compras</h4>
                     <ul id="lista-carrito"></ul>
-                    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="total-carrito">$0 COP</span>
+                    </div>
+                    <button class="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+                    <button class="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
                 </div>
             </div>
         </div>
@@ -117,17 +123,6 @@
             </div>
         </div>
     </section>
-
-    <!-- SECCIÓN DE SUSCRIPCIÓN -->
-    <section class="newsletter">
-        <h2>Suscríbete a nuestro boletín</h2>
-        <p>Recibe recetas exclusivas y descuentos en nuestra tienda.</p>
-        <form>
-            <input type="email" placeholder="Tu correo electrónico" required>
-            <button type="submit">Suscribirse</button>
-        </form>
-    </section>
-
     <!-- PIE DE PÁGINA -->
     <footer class="footer">
         <div class="footer-container">
@@ -159,55 +154,6 @@
             </div>
         </div>
     </footer>
-    <style>
-        * Icono del carrito */
-    .nav-cart {
-        position: relative;
-        cursor: pointer;
-    }
-            
-    .nav-cart img {
-        width: 40px;
-        height: 40px;
-    }
-    #contador-carrito {
-        background-color: red;
-        color: white;
-        font-size: 14px;
-        border-radius: 50%;
-        padding: 4px 8px;
-        position: absolute;
-        top: -5px;
-        right: -10px;
-    }
-            
-    /* Estilos del menú del carrito */
-    .carrito-dropdown {
-        display: none;
-        position: absolute;
-        right: 0;
-        background: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        width: 250px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-            
-    .carrito-dropdown h4 {
-        margin: 0;
-        text-align: center;
-    }
-            
-    .carrito-dropdown ul {
-        list-style: none;
-        padding: 0;
-    }
-            
-    .carrito-dropdown li {
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0;
-    }
-    </style>
+    
 </body>
 </html>
