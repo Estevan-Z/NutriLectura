@@ -1,5 +1,10 @@
-/* Estilos para el menú de usuario */
-
+.btn-suscribirse{
+    padding: 10px;
+    background: #ffa500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 .usuario-menu {
     position: relative;
@@ -75,8 +80,9 @@ body{
 }
 
 .logo {
-    height: 50px;
-    width: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 80px;
     margin-right: 10px;
 }
 
@@ -114,16 +120,10 @@ body{
 
 .nav-right a {
     text-decoration: none;
-    color: #6b8e23; /* Verde oliva */
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    color: #ffffff; /* Verde oliva */
+    font-size: 16px;
+    font-weight: 600;
     transition: color 0.3s ease;
-}
-
-.nav-right a:hover {
-    color: #d4a017; /* Amarillo mostaza */
 }
 
 .nav-right img {
@@ -279,6 +279,7 @@ body{
     margin: auto;
     padding: 20px;
 }
+
 
 .footer-info {
     display: flex;

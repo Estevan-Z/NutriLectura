@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro | NutriLectura</title>
-    <link rel="stylesheet" href="styles1.2.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="registro-container">
@@ -39,8 +39,13 @@
             let password = document.getElementById("password").value;
             let confirmPassword = document.getElementById("confirm-password").value;
 
+            // Validar que las contraseñas coincidan
             if (password !== confirmPassword) {
-                alert("Las contraseñas no coinciden. Inténtalo de nuevo.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Las contraseñas no coinciden. Inténtalo de nuevo.",
+                });
                 return;
             }
 
@@ -49,11 +54,108 @@
             localStorage.setItem("emailUsuario", email);
             localStorage.setItem("passwordUsuario", password);
 
-            alert("¡Registro exitoso! Redirigiendo a la página principal...");
-
-            // Redirigir a la página principal (index.html)
-            window.location.href = "login.html";
+            // Mostrar alerta de SweetAlert2
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "¡Registro exitoso!",
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                // Redirigir a la página de inicio de sesión después de la alerta
+                window.location.href = "login.html";
+            });
         });
     </script>
+    <style>
+        /* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Contenedor del formulario de registro */
+.registro-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.registro-container h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.registro-container p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* Estilos del formulario */
+#registro-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#registro-form label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: left;
+}
+
+#registro-form input {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#registro-form input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#registro-form button {
+    padding: 0.75rem;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#registro-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Enlace de inicio de sesión */
+.registro-container p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.registro-container p a:hover {
+    text-decoration: underline;
+}
+
+    </style>
 </body>
 </html>
