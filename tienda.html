@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda - Productos Saludables</title>
     <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="css/principal/tienda.css">
+    <link rel="stylesheet" href="css/Carrito/styles.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="js/Perfil/script.js"></script>
 </head>
 <body>
 
@@ -17,15 +22,31 @@
         
         <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="tienda.html" class="active">Tienda</a></li>
-            <li><a href="acerca_de_nostros.html">Acerca de Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="acerca_de_nostros.html">Quien somos</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
         </ul>
-
+        
         <div class="nav-right">
+            <div class="usuario-menu" id="usuario-menu" style="display: none;">
+                <img src="img/usuario.png" alt="Usuario" id="icono-usuario" style="cursor: pointer;">
+                <div class="dropdown-usuario" id="dropdown-usuario" style="display: none;">
+                    <p id="nombre-usuario">Usuario</p>
+                    <button onclick="cerrarSesion()">Cerrar sesión</button>
+                </div>
+            </div>
+            
+            <!-- Botón de Perfil (oculto inicialmente) -->
+            <button id="btn-perfil" style="display: none;" onclick="mostrarPerfil()">Perfil</button>
+            
+            <!-- Botón de Cerrar sesión (oculto inicialmente) -->
+            <button id="btn-cerrar-sesion" style="display: none;" onclick="cerrarSesion()">Cerrar sesión</button>
+            
+            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Suscribirse</a>
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
-            <a href="#"><img src="img/instagram.png" alt="instagram"></a>
+            <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
+            
             <div class="nav-cart">
                 <img src="img/Carro.png" alt="Carrito" id="icono-carrito">
                 <span id="contador-carrito">0</span>
@@ -38,29 +59,27 @@
                 </div>
             </div>
         </div>
-        <!-- Ícono del carrito en la barra de navegación -->
-
     </nav>
     <br>
-            <!-- Sección de Tienda -->
-            <h1>Tienda de Recetas Saludables</h1>
-            <br>
-             <div class="filtro">
-                 <label for="filtroCategoria">Filtrar por categoría:</label>
-                 <select id="filtroCategoria" onchange="filtrarProductos()">
-                     <option value="todos">Todos</option>
-                     <option value="veganas">Recetas Veganas</option>
-                     <option value="sin_gluten">Recetas Sin Gluten</option>
-                     <option value="keto">Recetas Keto</option>
-                     <option value="mas_vendidos">Más Vendidos</option>
-                     <option value="otros">Otras Recetas</option>
-                 </select>
 
-             </div>
-        <div class="tienda_productos">
-            <!-- 20 Productos -->
-            <script>
-                const productos = [
+    <!-- Sección de Tienda -->
+    <h1>Tienda de Recetas Saludables</h1>
+    <br>
+    <div class="filtro">
+        <label for="filtroCategoria">Filtrar por categoría:</label>
+        <select id="filtroCategoria" onchange="filtrarProductos()">
+            <option value="todos">Todos</option>
+            <option value="veganas">Recetas Veganas</option>
+            <option value="sin_gluten">Recetas Sin Gluten</option>
+            <option value="keto">Recetas Keto</option>
+            <option value="mas_vendidos">Más Vendidos</option>
+            <option value="otros">Otras Recetas</option>
+        </select>
+    </div>
+    <div class="tienda_productos">
+        <!-- 20 Productos -->
+        <script>
+            const productos = [
                 { nombre: "Recetas Veganas", precio: 45000, img: "img/producto1.png", categoria: "veganas" },
                 { nombre: "Recetas Sin Gluten", precio: 48000, img: "img/producto1.png", categoria: "sin_gluten" },
                 { nombre: "Recetas Keto", precio: 50000, img: "img/producto1.png", categoria: "keto" },
@@ -81,53 +100,51 @@
                 { nombre: "Recetas para Adelgazar", precio: 54000, img: "img/producto1.png", categoria: "otros" },
                 { nombre: "Recetas para el Sistema Inmune", precio: 51000, img: "img/producto1.png", categoria: "otros" },
                 { nombre: "Recetas Vegetarianas Gourmet", precio: 59000, img: "img/producto1.png", categoria: "veganas" }
-                ];
+            ];
 
-                
-                const masVendidos = [
-            "Recetas Sin Gluten",
-            "Recetas Keto",
-            "Recetas Para Deportistas",
-            "Recetas Bajas en Azúcar",
-            "Recetas Vegetarianas Gourmet"
-        ];
+            const masVendidos = [
+                "Recetas Sin Gluten",
+                "Recetas Keto",
+                "Recetas Para Deportistas",
+                "Recetas Bajas en Azúcar",
+                "Recetas Vegetarianas Gourmet"
+            ];
 
-        function mostrarProductos(lista) {
-            const contenedor = document.querySelector(".tienda_productos");
-            contenedor.innerHTML = "";
-            lista.forEach(producto => {
-                contenedor.innerHTML += `
-                    <div class="producto">
-                        <img src="${producto.img}" alt="${producto.nombre}">
-                        <h3>${producto.nombre}</h3>
-                        <span class="precio">$${producto.precio.toLocaleString('es-CO')} COP</span>
-                        <button class="btn-agregar">Agregar al carrito</button>
-                    </div>
-                `;
-            });
-        }
-
-        function filtrarProductos() {
-            const categoriaSeleccionada = document.getElementById("filtroCategoria").value;
-            let productosFiltrados;
-
-            if (categoriaSeleccionada === "todos") {
-                productosFiltrados = productos;
-            } else if (categoriaSeleccionada === "mas_vendidos") {
-                productosFiltrados = productos.filter(p => masVendidos.includes(p.nombre));
-            } else {
-                productosFiltrados = productos.filter(p => p.categoria === categoriaSeleccionada);
+            function mostrarProductos(lista) {
+                const contenedor = document.querySelector(".tienda_productos");
+                contenedor.innerHTML = "";
+                lista.forEach(producto => {
+                    contenedor.innerHTML += `
+                        <div class="producto">
+                            <img src="${producto.img}" alt="${producto.nombre}">
+                            <h3>${producto.nombre}</h3>
+                            <span class="precio">$${producto.precio.toLocaleString('es-CO')} COP</span>
+                            <button class="btn-agregar">Agregar al carrito</button>
+                        </div>
+                    `;
+                });
             }
 
-            mostrarProductos(productosFiltrados);
-        }
+            function filtrarProductos() {
+                const categoriaSeleccionada = document.getElementById("filtroCategoria").value;
+                let productosFiltrados;
 
-        mostrarProductos(productos);
-            </script>
-            
-        </div>
-    </section>
+                if (categoriaSeleccionada === "todos") {
+                    productosFiltrados = productos;
+                } else if (categoriaSeleccionada === "mas_vendidos") {
+                    productosFiltrados = productos.filter(p => masVendidos.includes(p.nombre));
+                } else {
+                    productosFiltrados = productos.filter(p => p.categoria === categoriaSeleccionada);
+                }
+
+                mostrarProductos(productosFiltrados);
+            }
+
+            mostrarProductos(productos);
+        </script>
+    </div>
     <br><br>
+
     <!-- PIE DE PÁGINA -->
     <footer class="footer">
         <div class="footer-container">
@@ -159,190 +176,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        let carrito = [];
+        // Verificar si el usuario está registrado al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            let nombreUsuario = localStorage.getItem("nombreUsuario");
 
-            // Cargar carrito desde localStorage al iniciar
-            document.addEventListener("DOMContentLoaded", () => {
-                cargarCarritoDesdeLocalStorage();
-
-                document.querySelectorAll(".btn-agregar").forEach((boton, index) => {
-                    boton.addEventListener("click", () => agregarAlCarrito(index));
-                });
-
-                document.getElementById("icono-carrito").addEventListener("click", toggleCarrito);
-            });
-
-            // Agregar producto al carrito
-            function agregarAlCarrito(index) {
-                const producto = productos[index];
-                carrito.push(producto);
-                actualizarCarrito();
-                guardarCarritoEnLocalStorage();
-            }
-
-            // Actualizar visualmente el carrito
-            function actualizarCarrito() {
-                document.getElementById("contador-carrito").innerText = carrito.length;
-                const listaCarrito = document.getElementById("lista-carrito");
-                listaCarrito.innerHTML = "";
-
-                carrito.forEach((producto, index) => {
-                    listaCarrito.innerHTML += `<li>${producto.nombre} - $${producto.precio.toLocaleString()} 
-                        <button onclick="eliminarDelCarrito(${index})">❌</button></li>`;
+            if (!nombreUsuario) {
+                // Si el usuario no está registrado, mostrar una alerta con SweetAlert2
+                Swal.fire({
+                    title: "Acceso restringido",
+                    text: "Por favor, regístrate o inicia sesión para realizar tus compras.",
+                    icon: "warning",
+                    confirmButtonText: "Registrarse",
+                    showCancelButton: true,
+                    cancelButtonText: "Iniciar sesión"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "registro.html"; // Redirigir a registro
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "login.html"; // Redirigir a inicio de sesión
+                    }
                 });
             }
-
-            // Eliminar un producto del carrito
-            function eliminarDelCarrito(index) {
-                carrito.splice(index, 1);
-                actualizarCarrito();
-                guardarCarritoEnLocalStorage();
-            }
-
-            // Vaciar el carrito
-            function vaciarCarrito() {
-                carrito = [];
-                actualizarCarrito();
-                guardarCarritoEnLocalStorage();
-            }
-
-            // Guardar carrito en localStorage
-            function guardarCarritoEnLocalStorage() {
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-            }
-
-            // Cargar carrito desde localStorage
-            function cargarCarritoDesdeLocalStorage() {
-                const carritoGuardado = localStorage.getItem("carrito");
-                if (carritoGuardado) {
-                    carrito = JSON.parse(carritoGuardado);
-                    actualizarCarrito();
-                }
-            }
-
-            // Mostrar/Ocultar carrito
-            function toggleCarrito() {
-                const carritoDropdown = document.getElementById("carrito-dropdown");
-                carritoDropdown.style.display = carritoDropdown.style.display === "block" ? "none" : "block";
-            }
-
-
+        });
     </script>
-    <style>
-        /* Icono del carrito */
-        .nav-cart {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-cart img {
-            width: 40px;
-            height: 40px;
-        }
-                #contador-carrito {
-            background-color: red;
-            color: white;
-            font-size: 14px;
-            border-radius: 50%;
-            padding: 4px 8px;
-            position: absolute;
-            top: -5px;
-            right: -10px;
-        }
-
-        /* Estilos del menú del carrito */
-        .carrito-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-            width: 250px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .carrito-dropdown h4 {
-            margin: 0;
-            text-align: center;
-        }
-
-        .carrito-dropdown ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .carrito-dropdown li {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-            .filtro {
-            margin-bottom: 20px;
-        }
-        
-        .filtro select, .filtro button {
-            padding: 8px;
-            margin: 5px;
-            font-size: 16px;
-        }
-        /* Sección de Tienda */
-        .contenedor-tienda {
-            text-align: center;
-            padding: 25px;
-        }
-
-        .tienda_productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            justify-items: center;
-            padding: 5px;
-        }
-        .producto {
-            
-            background: white;
-            border: 1px solid #ddd;
-            padding: 10px;
-            width: 300px;
-            height: 100%px;
-            text-align: center;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .producto img {
-            width: auto;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .precio {
-            font-weight: bold;
-            color: #6b8e23;
-        }
-
-        .btn-agregar {
-            background-color: #ffa500;
-            border: none;
-            padding: 10px;
-            color: white;
-            cursor: pointer;
-            margin-top: 5px;
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .btn-agregar:hover {
-            background-color: #ff8c00;
-        }
-    </style>
-
 </body>
 </html>

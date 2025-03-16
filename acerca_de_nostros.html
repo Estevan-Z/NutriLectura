@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acerca de Nosotros - NutriLectura</title>
     <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="css/Carrito/styles.css">
+    <script src="js/Perfil/script.js"></script>
     <style>
         
         .container {
@@ -51,13 +53,6 @@
             border-radius: 50%;
             object-fit: cover;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #6b8e23;
-            color: white;
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
@@ -71,14 +66,30 @@
         <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tienda.html">Tienda</a></li>
-            <li><a href="acerca_de_nostros.html">Acerca de Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acerca_de_nostros.html">Quien somos</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
         </ul>
     
         <div class="nav-right">
+            <div class="usuario-menu" id="usuario-menu" style="display: none;">
+                <img src="img/usuario.png" alt="Usuario" id="icono-usuario" style="cursor: pointer;">
+                <div class="dropdown-usuario" id="dropdown-usuario" style="display: none;">
+                    <p id="nombre-usuario">Usuario</p>
+                    <button onclick="cerrarSesion()">Cerrar sesión</button>
+                </div>
+            </div>
+            
+            <!-- Botón de Perfil (oculto inicialmente) -->
+            <button id="btn-perfil" style="display: none;" onclick="mostrarPerfil()">Perfil</button>
+            
+            <!-- Botón de Cerrar sesión (oculto inicialmente) -->
+            <button id="btn-cerrar-sesion" style="display: none;" onclick="cerrarSesion()">Cerrar sesión</button>
+            
+            <a href="registro.html" class="btn-suscribirse" id="btn-suscribirse">Suscribirse</a>
             <a href="#"><img src="img/Facebook.png" alt="Facebook"></a>      
             <a href="#"><img src="img/X.png" alt="X-twitter"></a>
-            <a href="#"><img src="img/instagram.png" alt="instagram"></a>
+            <a href="#"><img src="img/instagram.png" alt="Instagram"></a>
+            
             <div class="nav-cart">
                 <img src="img/Carro.png" alt="Carrito" id="icono-carrito">
                 <span id="contador-carrito">0</span>
@@ -90,7 +101,6 @@
                     <button onclick="vaciarCarrito()">Vaciar Carrito</button>
                 </div>
             </div>
-      
         </div>
     </nav>
 
@@ -164,54 +174,7 @@
 </footer>
 
 <style>
-    /* Icono del carrito */
-    .nav-cart {
-        position: relative;
-        cursor: pointer;
-    }
-            
-    .nav-cart img {
-        width: 40px;
-        height: 40px;
-    }
-    #contador-carrito {
-        background-color: red;
-        color: white;
-        font-size: 14px;
-        border-radius: 50%;
-        padding: 4px 8px;
-        position: absolute;
-        top: -5px;
-        right: -10px;
-    }
-            
-    /* Estilos del menú del carrito */
-    .carrito-dropdown {
-        display: none;
-        position: absolute;
-        right: 0;
-        background: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        width: 250px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-            
-    .carrito-dropdown h4 {
-        margin: 0;
-        text-align: center;
-    }
-            
-    .carrito-dropdown ul {
-        list-style: none;
-        padding: 0;
-    }
-            
-    .carrito-dropdown li {
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0;
-    }
+    
 </style>
 
 <script>

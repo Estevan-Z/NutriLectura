@@ -1,0 +1,112 @@
+ /* Icono del carrito */
+ .nav-cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-cart img {
+    width: 40px;
+    height: 40px;
+}
+        #contador-carrito {
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 4px 8px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+/* Estilos del menú del carrito */
+.carrito-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.carrito-dropdown h4 {
+    margin: 0;
+    text-align: center;
+}
+
+.carrito-dropdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+.carrito-dropdown li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+    .filtro {
+    margin-bottom: 20px;
+}
+
+.filtro select, .filtro button {
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+}
+/* Sección de Tienda */
+.contenedor-tienda {
+    text-align: center;
+    padding: 25px;
+}
+
+.tienda_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    padding: 5px;
+}
+.producto {
+    
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 300px;
+    height: 100%px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    width: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.precio {
+    font-weight: bold;
+    color: #6b8e23;
+}
+
+.btn-agregar {
+    background-color: #ffa500;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn-agregar:hover {
+    background-color: #ff8c00;
+}
