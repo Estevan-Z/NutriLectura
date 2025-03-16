@@ -65,12 +65,16 @@ body{
 
 /* NAVBAR: Barra de navegación con logo y enlaces */
 .navbar {
+    position: sticky; /* Hace que la barra sea "sticky" */
+    top: 0; /* Se pega en la parte superior */
+    width: 100%;
+    background-color: #bef3a8; /* Color de fondo */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: #bef3a8; /* Fondo beige claro */
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
 }
 
 /* Sección izquierda con logo y nombre */
@@ -85,13 +89,24 @@ body{
     border-radius: 80px;
     margin-right: 10px;
 }
+.logofinal {
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin-right: 10px;
+}
+
 
 .Marca {
     font-size: 24px;
     font-weight: bold;
-    color: #6b8e23; /* Verde oliva */
+    color: #6b8e23; 
 }
-
+.Marcafinal {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6b8e23; 
+}
 /* Estilos de los enlaces */
 .nav-links {
     display: flex;
@@ -262,7 +277,6 @@ body{
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    width: 150px;
 }
 
 /* PIE DE PÁGINA */
